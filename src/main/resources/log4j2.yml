@@ -1,0 +1,26 @@
+Configuration:
+  status: warn
+
+  Appenders:
+    Console:
+      name: Console
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d %highlight{%-5level} %yellow{[%t]}%X{ExecutionContext} %blue{%c{1.}} %msg%n%throwable"
+        
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        -  ref: Console
+    Logger:
+      - name: org.springframework.security
+        level: debug
+      - name: com.domain
+        level: debug
+      - name: plugin
+        level: info
+      - name: audit
+        level: info
+      - name: '/'
+        level: debug

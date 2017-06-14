@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        maven {
+            url artifactoryUrl + artifactoryRepo
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'org.springframework.boot'
+
+mainClassName = "com.domain.Application"
+
+repositories {
+    maven {
+        url artifactoryUrl + artifactoryRepo
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+    compile("org.springframework.boot:spring-boot-starter-log4j2")
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+
+    compile("org.springframework.boot:spring-boot-starter-security") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+    compile("org.springframework.boot:spring-boot-starter-security") {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+    compile("org.springframework.ldap:spring-ldap-core")
+    compile("org.springframework.security:spring-security-ldap")
+
+    compile("com.google.guava:guava:22.0")
+    compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.7")
+    compile("com.fasterxml.jackson.core:jackson-databind:2.8.7")
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
